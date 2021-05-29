@@ -22,4 +22,28 @@
       padding: 10px 15px;
     }
   }
+  .profile {
+    display: flex;
+    width: 25%;
+    justify-content: space-around;
+    align-items: center;
+
+    .logout-btn {
+      min-width: 65px;
+      width: auto;
+      height: 40px;
+      font-size: 15px;
+      text-transform: uppercase;
+      font-family: "Open Sans Condensed";
+      font-weight: bolder;
+      border: none;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgb(14, 0, 0);
+        color: rgb(253, 246, 246);
+        border: 1px solid black;
+      }
+    }
+  }
 }

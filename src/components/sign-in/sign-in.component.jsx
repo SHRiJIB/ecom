@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import CustomButton from "../custom-button/custom-button.component";
 import FormInput from "../form-input/form-input.component";
+import { signin } from "../../api/index";
 
 import "./sign-in.styles.scss";
 
@@ -16,21 +18,28 @@ class Signin extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
+    const { email, password } = this.state;
+    const res = await signin({ email, password });
+    localStorage.setItem("profile", JSON.stringify(res?.data));
     this.setState({ email: "", password: "" });
+    const { history } = this.props;
+    if (history) {
+      history.push("/");
+    }
   };
 
   handleChange = (event) => {
     const { value, name } = event.target;
+
     this.setState({ [name]: value });
   };
 
   render() {
     return (
       <div className="sign-in">
-        <h1>I already have an account.</h1>
-        <span>Sign in with your email and password.</span>
+        <h1 className="title">Sign in</h1>
         <form onSubmit={this.handleSubmit}>
           <FormInput
             id="email"
@@ -53,6 +62,7 @@ class Signin extends React.Component {
 
           <CustomButton type="submit">Sign In</CustomButton>
         </form>
+        <Link to="/signup">Don't have an account.</Link>
       </div>
     );
   }
