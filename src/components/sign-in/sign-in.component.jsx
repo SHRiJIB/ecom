@@ -2,9 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import CustomButton from "../custom-button/custom-button.component";
 import FormInput from "../form-input/form-input.component";
-import { signin } from "../../api/index";
+import { signin } from "../../redux/actions/auth";
 
 import "./sign-in.styles.scss";
+import { connect } from "react-redux";
 
 class Signin extends React.Component {
   constructor(props) {
@@ -21,13 +22,8 @@ class Signin extends React.Component {
   handleSubmit = async (event) => {
     event.preventDefault();
     const { email, password } = this.state;
-    const res = await signin({ email, password });
-    localStorage.setItem("profile", JSON.stringify(res?.data));
+    this.props.signin({ email, password });
     this.setState({ email: "", password: "" });
-    const { history } = this.props;
-    if (history) {
-      history.push("/");
-    }
   };
 
   handleChange = (event) => {
@@ -38,34 +34,40 @@ class Signin extends React.Component {
 
   render() {
     return (
-      <div className="sign-in">
-        <h1 className="title">Sign in</h1>
-        <form onSubmit={this.handleSubmit}>
-          <FormInput
-            id="email"
-            type="email"
-            value={this.state.email}
-            handleChange={this.handleChange}
-            label="Email"
-            name="email"
-            required
-          />
-          <FormInput
-            id="password"
-            type="password"
-            value={this.state.password}
-            handleChange={this.handleChange}
-            label="Password"
-            name="password"
-            required
-          />
+      <div className="container">
+        <div className="sign-in">
+          <h1 className="title">Sign in</h1>
+          <form onSubmit={this.handleSubmit}>
+            <FormInput
+              id="email"
+              type="email"
+              value={this.state.email}
+              handleChange={this.handleChange}
+              label="Email"
+              name="email"
+              required
+            />
+            <FormInput
+              id="password"
+              type="password"
+              value={this.state.password}
+              handleChange={this.handleChange}
+              label="Password"
+              name="password"
+              required
+            />
 
-          <CustomButton type="submit">Sign In</CustomButton>
-        </form>
-        <Link to="/signup">Don't have an account.</Link>
+            <CustomButton type="submit">Sign In</CustomButton>
+          </form>
+          <Link to="/signup">Don't have an account.</Link>
+        </div>
       </div>
     );
   }
 }
 
-export default Signin;
+const mapDispatchToProps = (dispatch) => ({
+  signin: (formData) => dispatch(signin(formData)),
+});
+
+export default connect(null, mapDispatchToProps)(Signin);

@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./avatar.styles.scss";
 const Avatar = ({ imgUrl, name = "Name" }) => {
   return (
     <div className="avatar">
