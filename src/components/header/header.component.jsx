@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useLocation, useHistory } from "react-router-dom";
-import { ReactComponent as Logo } from "../../assets/crown.svg";
+import Logo from "../../assets/crown.png";
 import Avatar from "../avatar/Avatar.component";
-
+import CartIcon from "../cart-icon/cart-icon.components";
+import CartDropDown from "../cart-dropdown/cart-dropdown.component";
 import "./header.styles.scss";
 
 const Header = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -23,7 +25,7 @@ const Header = () => {
   return (
     <div className="header">
       <Link to="/" className="logo-cotainer">
-        <Logo className="logo" />
+        <img src={Logo} className="logo" alt="logo" />
       </Link>
       <div className="options">
         <Link className="option" to="/shop">
@@ -32,6 +34,7 @@ const Header = () => {
         <Link className="option" to="/shop">
           CONTACT
         </Link>
+        <CartIcon setIsOpen={setIsOpen} />
         {user ? (
           <div className="profile">
             <Avatar imgUrl={user?.image} name={user?.result?.name} />
@@ -48,6 +51,7 @@ const Header = () => {
           </div>
         )}
       </div>
+      {isOpen && <CartDropDown />}
     </div>
   );
 };
