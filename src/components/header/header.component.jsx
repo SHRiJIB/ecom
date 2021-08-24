@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import Logo from "../../assets/crown.png";
 import Avatar from "../avatar/Avatar.component";
 import CartIcon from "../cart-icon/cart-icon.components";
 import CartDropDown from "../cart-dropdown/cart-dropdown.component";
 import "./header.styles.scss";
-
 const Header = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
-  const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const dispatch = useDispatch();
   const history = useHistory();
+  const { isOpen } = useSelector((state) => state.cart);
   const logout = () => {
     dispatch({ type: "LOGOUT" });
     dispatch({ type: "SET_CURRENT_USER", payload: null });
@@ -34,7 +33,7 @@ const Header = () => {
         <Link className="option" to="/shop">
           CONTACT
         </Link>
-        <CartIcon setIsOpen={setIsOpen} />
+        <CartIcon />
         {user ? (
           <div className="profile">
             <Avatar imgUrl={user?.image} name={user?.result?.name} />
