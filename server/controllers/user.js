@@ -20,7 +20,7 @@ const signin = async (req, res) => {
 
     const token = jwt.sign(
       { email: existingUser.email, id: existingUser._id },
-      "ecom23",
+      process.env.SECRET,
       { expiresIn: "1h" }
     );
     res.status(200).json({ result: existingUser, token });
@@ -44,9 +44,13 @@ const signup = async (req, res) => {
       password: hashedPassword,
     });
     await user.save();
-    const token = jwt.sign({ email: user.email, id: user._id }, "ecom23", {
-      expiresIn: "1h",
-    });
+    const token = jwt.sign(
+      { email: user.email, id: user._id },
+      process.env.SECRET,
+      {
+        expiresIn: "1h",
+      }
+    );
     res.status(200).json({ result: user, token });
   } catch (error) {
     res.status(500).json({ message: "Something went wrong." });
