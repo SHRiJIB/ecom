@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import CustomButton from "../custom-button/custom-button.component";
 import FormInput from "../form-input/form-input.component";
-import { signin } from "../../redux/auth/auth";
+import { signin } from "../../Stores/auth/auth";
 
 import "./sign-in.styles.scss";
 import { connect } from "react-redux";

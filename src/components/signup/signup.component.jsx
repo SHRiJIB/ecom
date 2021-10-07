@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import CustomButton from "../custom-button/custom-button.component";
 import FormInput from "../form-input/form-input.component";
-import { signup } from "../../redux/auth/auth";
+import { signup } from "../../Stores/auth/auth";
 import "./signup.styles.scss";
 
 class Signup extends React.Component {
