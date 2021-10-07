@@ -3,7 +3,7 @@ import './collection-item.styles.scss';
 
 interface CollectionItemProps {
 	name: string;
-	price: string;
+	price: number;
 	imageUrl: string;
 }
 const CollectionItem: FC<CollectionItemProps> = ({ name, price, imageUrl }) => (

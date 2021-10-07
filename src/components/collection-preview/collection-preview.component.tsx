@@ -5,11 +5,10 @@ import './collection-preview.styles.scss';
 interface CollectionPreviewProps {
 	title: string;
 	items: {
-		title: string;
+		name: string;
 		imageUrl: string;
 		id: number;
-		linkUrl: string;
-		price: string;
+		price: number;
 	}[];
 }
 
@@ -20,8 +19,8 @@ const CollectionPreview: FC<CollectionPreviewProps> = ({ title, items }) => {
 			<div className="preview">
 				{items
 					.filter((item, index) => index < 4)
-					.map(({ id, imageUrl, title, price }) => (
-						<CollectionItem key={id} name={title} imageUrl={imageUrl} price={price} />
+					.map(({ id, imageUrl, name, price }) => (
+						<CollectionItem key={id} name={name} imageUrl={imageUrl} price={price} />
 					))}
 			</div>
 		</div>
