@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useHistory } from 'react-router-dom';
+import { RootState } from 'Stores';
 import Logo from '../../assets/crown.png';
 import Avatar from '../avatar/Avatar.component';
 import CartIcon from '../cart-icon/cart-icon.components';
@@ -8,18 +9,19 @@ import CartDropDown from '../cart-dropdown/cart-dropdown.component';
 import './header.styles.scss';
 
 const Header: React.FC = () => {
-	const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile') || ''));
+	const [user, setUser] = useState(null);
 	const location = useLocation();
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const { isOpen } = useSelector((state) => state.cart);
+	const isOpen = useSelector<RootState>((state) => state.cart.isOpen);
 	const logout = () => {
 		dispatch({ type: 'LOGOUT' });
 		dispatch({ type: 'SET_CURRENT_USER', payload: null });
 		history.push('/');
 	};
 	useEffect(() => {
-		setUser(JSON.parse(localStorage.getItem('profile') || ''));
+		const json = localStorage.getItem('profile');
+		if (json) setUser(JSON.parse(json));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [location]);
 	return (

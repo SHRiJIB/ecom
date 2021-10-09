@@ -8,7 +8,7 @@ const CartDropDown: React.FC<CartDropDownProps> = () => {
 		<div className="cart-dropdown">
 			<div className="cart-items">m</div>
 
-			<CustomButton>GO TO CHECKOUT</CustomButton>
+			<CustomButton type="button">GO TO CHECKOUT</CustomButton>
 		</div>
 	);
 };

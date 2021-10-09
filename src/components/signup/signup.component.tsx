@@ -13,7 +13,7 @@ export interface FormData {
 	email: string;
 	password: string;
 }
-const Signup: FC<SignUpFormProps> = (props) => {
+const Signup: FC<SignUpFormProps> = () => {
 	const initialFormData = {
 		firstName: '',
 		lastName: '',

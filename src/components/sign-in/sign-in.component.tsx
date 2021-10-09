@@ -1,73 +1,65 @@
-import React from 'react';
+import React, { FC, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { signin } from 'Stores/auth/auth';
+import { FormData } from 'components/signup/signup.component';
 import CustomButton from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
-import { signin } from '../../Stores/auth/auth';
-
 import './sign-in.styles.scss';
-import { connect } from 'react-redux';
 
-class Signin extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			email: '',
-			password: '',
-		};
+const Signin: FC = () => {
+	const initialFormData = {
+		firstName: '',
+		lastName: '',
+		email: '',
+		password: '',
+	};
+	const dispatch = useDispatch();
 
-		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-	}
+	const [formData, setFormData] = useState<FormData>(initialFormData);
 
-	handleSubmit = async (event) => {
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		const { email, password } = this.state;
-		this.props.signin({ email, password });
-		this.setState({ email: '', password: '' });
+
+		dispatch(signin(formData));
+		setFormData({ ...initialFormData });
 	};
 
-	handleChange = (event) => {
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { value, name } = event.target;
-
-		this.setState({ [name]: value });
+		setFormData({ ...formData, [name]: value });
 	};
 
-	render() {
-		return (
-			<div className="container">
-				<div className="sign-in">
-					<h1 className="title">Sign in</h1>
-					<form onSubmit={this.handleSubmit}>
-						<FormInput
-							id="email"
-							type="email"
-							value={this.state.email}
-							handleChange={this.handleChange}
-							label="Email"
-							name="email"
-							required
-						/>
-						<FormInput
-							id="password"
-							type="password"
-							value={this.state.password}
-							handleChange={this.handleChange}
-							label="Password"
-							name="password"
-							required
-						/>
+	return (
+		<div className="container">
+			<div className="sign-in">
+				<h1 className="title">Sign in</h1>
+				<form onSubmit={handleSubmit}>
+					<FormInput
+						id="email"
+						type="email"
+						value={formData.email}
+						handleChange={handleChange}
+						label="Email"
+						name="email"
+						required
+					/>
+					<FormInput
+						id="password"
+						type="password"
+						value={formData.password}
+						handleChange={handleChange}
+						label="Password"
+						name="password"
+						required
+					/>
 
-						<CustomButton type="submit">Sign In</CustomButton>
-					</form>
-					<Link to="/signup">Don't have an account.</Link>
-				</div>
+					<CustomButton type="submit">Sign In</CustomButton>
+				</form>
+				<Link to="/signup">Don&apos;t have an account.</Link>
 			</div>
-		);
-	}
-}
+		</div>
+	);
+};
 
-const mapDispatchToProps = (dispatch) => ({
-	signin: (formData) => dispatch(signin(formData)),
-});
-
-export default connect(null, mapDispatchToProps)(Signin);
+export default Signin;
