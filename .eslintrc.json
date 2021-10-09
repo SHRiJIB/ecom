@@ -45,6 +45,7 @@
 				"extensions": [".js", ".jsx", ".ts", ".tsx"]
 			}
 		],
+		"import/no-cycle": "off",
 		"import/no-unresolved": "error",
 		"no-use-before-define": "off",
 		"@typescript-eslint/no-use-before-define": "off",

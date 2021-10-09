@@ -1,13 +1,12 @@
 import React, { FC, useState } from 'react';
-import { Link, RouteComponentProps } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { signup } from 'Stores/auth/auth';
 import CustomButton from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
 import './signup.styles.scss';
 
-interface SignUpFormProps {
-	history: RouteComponentProps['history'];
-	signup: (formData: FormData, history: RouteComponentProps['history']) => void;
-}
+interface SignUpFormProps {}
 export interface FormData {
 	firstName: string;
 	lastName: string;
@@ -22,12 +21,14 @@ const Signup: FC<SignUpFormProps> = (props) => {
 		password: '',
 	};
 
+	const history = useHistory();
+	const dispatch = useDispatch();
+
 	const [formData, setFormData] = useState<FormData>(initialFormData);
 
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		const { history, signup } = props;
-		signup(formData, history);
+		dispatch(signup(formData, history));
 		setFormData({ ...initialFormData });
 	};
 

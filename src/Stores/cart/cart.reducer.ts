@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { types } from './actionTypes';
 
-interface CartState {
+export interface CartState {
 	isOpen: boolean;
 }
 const INITIAL_STATE = {

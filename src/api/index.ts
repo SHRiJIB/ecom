@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import axios from 'axios';
+import { FormData } from 'components/signup/signup.component';
 
 const API = axios.create({ baseURL: 'https://ecom23.herokuapp.com' });
 
