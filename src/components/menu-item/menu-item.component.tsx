@@ -1,17 +1,19 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { FC } from 'react';
-import { withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import './menu-item.styles.scss';
 
 interface MenuItemProps {
 	title: string;
 	imageUrl: string;
-	size: string;
-	history: History;
+	size?: string;
 	linkUrl: string;
 }
-const MenuItem: FC<MenuItemProps> = ({ title, imageUrl, size, history, linkUrl, match }) => {
+const MenuItem: FC<MenuItemProps> = ({ title, imageUrl, size, linkUrl }) => {
+	const history = useHistory();
 	return (
-		<div className={`menu-item ${size}`} onClick={() => history.push(`${match.url}${linkUrl}`)}>
+		// eslint-disable-next-line jsx-a11y/no-static-element-interactions
+		<div className={`menu-item ${size}`} onClick={() => history.push(`${linkUrl}`)}>
 			<div
 				className="background-image"
 				style={{
@@ -26,4 +28,4 @@ const MenuItem: FC<MenuItemProps> = ({ title, imageUrl, size, history, linkUrl, 
 	);
 };
 
-export default withRouter(MenuItem);
+export default MenuItem;

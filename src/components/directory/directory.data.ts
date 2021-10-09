@@ -1,5 +1,11 @@
 // eslint-disable-next-line import/prefer-default-export
-export const SECTIONS = [
+export const SECTIONS: {
+	title: string;
+	imageUrl: string;
+	size?: string;
+	id: number;
+	linkUrl: string;
+}[] = [
 	{
 		title: 'hats',
 		imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',

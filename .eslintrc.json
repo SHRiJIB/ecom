@@ -19,7 +19,13 @@
 		"tsconfigRootDir": "./"
 	},
 	"plugins": ["react", "react-hooks", "@typescript-eslint", "prettier", "import", "unused-imports"],
-	"extends": ["plugin:react/recommended", "airbnb", "plugin:prettier/recommended", "plugin:@typescript-eslint/eslint-recommended", "plugin:@typescript-eslint/recommended"],
+	"extends": [
+		"plugin:react/recommended",
+		"airbnb",
+		"plugin:prettier/recommended",
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended"
+	],
 	"rules": {
 		"import/extensions": [
 			"error",
@@ -43,6 +49,7 @@
 		"no-use-before-define": "off",
 		"@typescript-eslint/no-use-before-define": "off",
 		"react/jsx-props-no-spreading": "off",
+		"react/require-default-props": "off",
 		"no-unused-vars": "off",
 		"unused-imports/no-unused-imports": "error",
 		"unused-imports/no-unused-vars": [

@@ -1,12 +1,12 @@
 import React, { FC, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import CustomButton from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
 import './signup.styles.scss';
 
 interface SignUpFormProps {
-	history: History;
-	signup: (formData: FormData, history: History) => void;
+	history: RouteComponentProps['history'];
+	signup: (formData: FormData, history: RouteComponentProps['history']) => void;
 }
 export interface FormData {
 	firstName: string;
