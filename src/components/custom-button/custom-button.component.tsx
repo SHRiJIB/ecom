@@ -4,11 +4,16 @@ import './custom-button.styles.scss';
 
 interface CustomButtonProps {
 	type: 'button' | 'submit' | 'reset' | undefined;
+	inverted?: boolean;
 }
 
-const CustomButton: FC<CustomButtonProps> = ({ children, type, ...otherProps }) => (
-	// eslint-disable-next-line react/button-has-type
-	<button className="custom-button" {...otherProps} type={type ?? 'button'}>
+const CustomButton: FC<CustomButtonProps> = ({ children, inverted, type, ...otherProps }) => (
+	<button
+		className={`${inverted ? 'inverted' : ''} custom-button`}
+		{...otherProps}
+		// eslint-disable-next-line react/button-has-type
+		type={type ?? 'button'}
+	>
 		{children}
 	</button>
 );

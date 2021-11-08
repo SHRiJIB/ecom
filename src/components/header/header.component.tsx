@@ -2,14 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import { RootState } from 'Stores';
+import { User } from 'Stores/user/user.reducer';
 import Logo from '../../assets/crown.png';
 import Avatar from '../avatar/Avatar.component';
 import CartIcon from '../cart-icon/cart-icon.components';
 import CartDropDown from '../cart-dropdown/cart-dropdown.component';
 import './header.styles.scss';
 
+interface IUser {
+	image: string;
+	result: User;
+}
 const Header: React.FC = () => {
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState<IUser | null>(null);
 	const location = useLocation();
 	const dispatch = useDispatch();
 	const history = useHistory();
