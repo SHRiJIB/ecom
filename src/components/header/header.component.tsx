@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import { RootState } from 'Stores';
@@ -9,24 +9,24 @@ import CartIcon from '../cart-icon/cart-icon.components';
 import CartDropDown from '../cart-dropdown/cart-dropdown.component';
 import './header.styles.scss';
 
-interface IUser {
-	image: string;
-	result: User;
-}
 const Header: React.FC = () => {
-	const [user, setUser] = useState<IUser | null>(null);
 	const location = useLocation();
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const isOpen = useSelector<RootState>((state) => state.cart.isOpen);
+	const isOpen = useSelector<RootState, boolean>((state) => state.cart.isOpen);
+	const currentUser = useSelector<RootState, { result: User } | null>(
+		(state) => state.user.currentUser
+	);
 	const logout = () => {
 		dispatch({ type: 'LOGOUT' });
 		dispatch({ type: 'SET_CURRENT_USER', payload: null });
 		history.push('/');
 	};
 	useEffect(() => {
-		const json = localStorage.getItem('profile');
-		if (json) setUser(JSON.parse(json));
+		const profileData = localStorage.getItem('profile');
+		if (profileData) {
+			dispatch({ type: 'SET_CURRENT_USER', payload: JSON.parse(profileData) });
+		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [location]);
 	return (
@@ -42,9 +42,9 @@ const Header: React.FC = () => {
 					CONTACT
 				</Link>
 				<CartIcon />
-				{user ? (
+				{currentUser ? (
 					<div className="profile">
-						<Avatar imgUrl={user?.image} name={user?.result?.name} />
+						<Avatar imgUrl={currentUser?.result.image ?? ''} name={currentUser?.result?.name} />
 
 						<button type="button" className="logout-btn" onClick={logout}>
 							Log out

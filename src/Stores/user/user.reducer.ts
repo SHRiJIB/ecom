@@ -2,6 +2,7 @@ export interface User {
 	createdAt: string;
 	email: string;
 	name: string;
+	image?: string;
 	password: string;
 	updatedAt: string;
 	__v: number;
