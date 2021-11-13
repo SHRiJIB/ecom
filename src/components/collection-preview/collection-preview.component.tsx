@@ -2,14 +2,15 @@ import React, { FC } from 'react';
 import CollectionItem from '../collection-item/collection-item.compoent';
 import './collection-preview.styles.scss';
 
+export interface Item {
+	name: string;
+	imageUrl: string;
+	id: number;
+	price: number;
+}
 interface CollectionPreviewProps {
 	title: string;
-	items: {
-		name: string;
-		imageUrl: string;
-		id: number;
-		price: number;
-	}[];
+	items: Item[];
 }
 
 const CollectionPreview: FC<CollectionPreviewProps> = ({ title, items }) => {
