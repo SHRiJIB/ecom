@@ -5,6 +5,7 @@ import './custom-button.styles.scss';
 interface CustomButtonProps {
 	type: 'button' | 'submit' | 'reset' | undefined;
 	inverted?: boolean;
+	onClick?: () => void;
 }
 
 const CustomButton: FC<CustomButtonProps> = ({ children, inverted, type, ...otherProps }) => (
