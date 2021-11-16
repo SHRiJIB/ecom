@@ -2,12 +2,12 @@
 import { Item } from 'components/collection-preview/collection-preview.component';
 import { types } from './actionTypes';
 
-export interface CartItem extends Item {
+export interface ICartItem extends Item {
 	quantity: number;
 }
 export interface CartState {
 	isOpen: boolean;
-	cartItems: Record<string, CartItem>;
+	cartItems: Record<string, ICartItem>;
 }
 const INITIAL_STATE = {
 	isOpen: false,
@@ -34,7 +34,10 @@ export const cartReducer = (
 	}
 };
 
-const toCartItem = (item: Item, cartItems: Record<string, CartItem>): Record<string, CartItem> => {
+const toCartItem = (
+	item: Item,
+	cartItems: Record<string, ICartItem>
+): Record<string, ICartItem> => {
 	if (cartItems[item.id] === undefined) {
 		return {
 			...cartItems,
