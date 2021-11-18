@@ -5,7 +5,10 @@ import { useDispatch } from 'react-redux';
 import { toggleCart } from 'Stores/cart/cart.actions';
 import { ReactComponent as Icon } from 'assets/shopping-bag.svg';
 
-const CartIcon: FC = () => {
+interface CartIconProps {
+	count?: number;
+}
+const CartIcon: FC<CartIconProps> = ({ count }) => {
 	const dispatch = useDispatch();
 	const toggle = () => {
 		dispatch(toggleCart());
@@ -13,7 +16,7 @@ const CartIcon: FC = () => {
 	return (
 		<Box className="cart-icon" onClick={toggle}>
 			<Icon />
-			<span className="item-count">0</span>
+			<span className="item-count">{count ?? 0}</span>
 		</Box>
 	);
 };

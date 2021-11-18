@@ -2,4 +2,5 @@
 export const types = {
 	TOGGLE: 'TOGGLE',
 	ADD_ITEM: 'ADD_ITEM',
+	GET_ITEM_COUNT: 'GET_ITEM_COUNT',
 };
