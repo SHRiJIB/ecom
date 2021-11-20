@@ -4,7 +4,8 @@ import { Link, useLocation, useHistory } from 'react-router-dom';
 import { RootState } from 'Stores';
 import { User } from 'Stores/user/user.reducer';
 import { CartItems } from 'Stores/cart/cart.reducer';
-import { selectCartItemsCount } from 'Stores/cart/cart.selector';
+import { selectCartDropDownStatus, selectCartItemsCount } from 'Stores/cart/cart.selector';
+import { selectCurrentUser } from 'Stores/user/user.selector';
 import Logo from '../../assets/crown.png';
 import Avatar from '../avatar/Avatar.component';
 import CartIcon from '../cart-icon/cart-icon.components';
@@ -15,10 +16,8 @@ const Header: React.FC = () => {
 	const location = useLocation();
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const isOpen = useSelector<RootState, boolean>((state) => state.cart.isOpen);
-	const currentUser = useSelector<RootState, { result: User } | null>(
-		(state) => state.user.currentUser
-	);
+	const isOpen = useSelector<RootState, boolean>(selectCartDropDownStatus);
+	const currentUser = useSelector<RootState, { result: User } | null>(selectCurrentUser);
 	const cartItems = useSelector<RootState, CartItems>((state) => state.cart.cartItems);
 	const cartItemsCount = useSelector<RootState, number>(selectCartItemsCount);
 	const logout = () => {

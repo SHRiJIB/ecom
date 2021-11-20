@@ -7,3 +7,4 @@ export const selectCartItems = createSelector([selectCart], (cart) => cart.cartI
 export const selectCartItemsCount = createSelector([selectCartItems], (items: CartItems) =>
 	Object.keys(items).reduce((count, key) => count + items[key].quantity, 0)
 );
+export const selectCartDropDownStatus = createSelector([selectCart], (cart) => cart.isOpen);
