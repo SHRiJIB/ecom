@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import { RootState } from 'Stores';
 import { User } from 'Stores/user/user.reducer';
-import { CartItems } from 'Stores/cart/cart.reducer';
 import { selectCartDropDownStatus, selectCartItemsCount } from 'Stores/cart/cart.selector';
 import { selectCurrentUser } from 'Stores/user/user.selector';
 import Logo from '../../assets/crown.png';
@@ -18,7 +17,6 @@ const Header: React.FC = () => {
 	const history = useHistory();
 	const isOpen = useSelector<RootState, boolean>(selectCartDropDownStatus);
 	const currentUser = useSelector<RootState, { result: User } | null>(selectCurrentUser);
-	const cartItems = useSelector<RootState, CartItems>((state) => state.cart.cartItems);
 	const cartItemsCount = useSelector<RootState, number>(selectCartItemsCount);
 	const logout = () => {
 		dispatch({ type: 'LOGOUT' });
@@ -32,7 +30,7 @@ const Header: React.FC = () => {
 		}
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [location, cartItems]);
+	}, [location]);
 	return (
 		<div className="header">
 			<Link to="/" className="logo-cotainer">
