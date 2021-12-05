@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import { Item } from 'components/collection-preview/collection-preview.component';
+import { Item } from 'Components/collection-preview/collection-preview.component';
 import { types } from './actionTypes';
 import { parseToCartItem } from './utils';
 

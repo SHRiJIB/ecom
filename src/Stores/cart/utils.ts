@@ -1,4 +1,4 @@
-import { Item } from 'components/collection-preview/collection-preview.component';
+import { Item } from 'Components/collection-preview/collection-preview.component';
 import { ICartItem } from './cart.reducer';
 
 // eslint-disable-next-line import/prefer-default-export

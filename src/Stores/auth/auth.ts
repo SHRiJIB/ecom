@@ -1,5 +1,5 @@
 import { RouteComponentProps } from 'react-router';
-import { FormData } from 'components/signup/signup.component';
+import { FormData } from 'Components/signup/signup.component';
 import { Dispatch } from 'redux';
 import * as api from '../../api/index';
 

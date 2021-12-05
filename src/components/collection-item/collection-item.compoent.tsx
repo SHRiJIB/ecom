@@ -1,5 +1,5 @@
-import { Item } from 'components/collection-preview/collection-preview.component';
-import CustomButton from 'components/custom-button/custom-button.component';
+import { Item } from 'Components/collection-preview/collection-preview.component';
+import CustomButton from 'Components/custom-button/custom-button.component';
 import React, { FC } from 'react';
 import './collection-item.styles.scss';
 

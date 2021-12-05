@@ -2,8 +2,8 @@ import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { signup } from 'Stores/auth/auth';
-import CustomButton from '../custom-button/custom-button.component';
-import FormInput from '../form-input/form-input.component';
+import CustomButton from 'Components/custom-button/custom-button.component';
+import FormInput from 'Components/form-input/form-input.component';
 import './signup.styles.scss';
 
 interface SignUpFormProps {}

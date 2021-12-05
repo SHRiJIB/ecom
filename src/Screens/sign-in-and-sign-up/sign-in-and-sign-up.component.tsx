@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Signin from '../../components/sign-in/sign-in.component';
-import Signup from '../../components/signup/signup.component';
+import Signin from '../../Components/sign-in/sign-in.component';
+import Signup from '../../Components/signup/signup.component';
 import './sign-in-and-sign-up.styles.scss';
 
 const SigninAndSignup: FC = () => {

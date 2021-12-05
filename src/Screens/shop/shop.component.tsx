@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import CollectionPreview from '../../components/collection-preview/collection-preview.component';
+import CollectionPreview from '../../Components/collection-preview/collection-preview.component';
 import { SHOP_DATA } from './shop1.data';
 
 const Shop: FC = () => {

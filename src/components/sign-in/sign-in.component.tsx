@@ -2,9 +2,9 @@ import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { signin } from 'Stores/auth/auth';
-import { FormData } from 'components/signup/signup.component';
-import CustomButton from '../custom-button/custom-button.component';
-import FormInput from '../form-input/form-input.component';
+import { FormData } from 'Components/signup/signup.component';
+import CustomButton from 'Components/custom-button/custom-button.component';
+import FormInput from 'Components/form-input/form-input.component';
 import './sign-in.styles.scss';
 
 const Signin: FC = () => {
