@@ -9,9 +9,9 @@ import Signup from './components/signup/signup.component';
 import HomePage from './pages/homepage/homepage.component';
 import Shop from './pages/shop/shop.component';
 
-function App() {
+function App(): JSX.Element {
 	const user = useSelector<RootState>((state) => state.user.currentUser);
-	console.log(user);
+
 	return (
 		<div>
 			<Header />
