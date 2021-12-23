@@ -1,19 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import { RootState } from 'Stores';
+import { Popover, Box, Button } from '@mui/material';
 import { User } from 'Stores/user/user.reducer';
 import { selectCartDropDownStatus, selectCartItemsCount } from 'Stores/cart/cart.selector';
 import { selectCurrentUser } from 'Stores/user/user.selector';
+import Avatar from 'Components/avatar/Avatar.component';
+import CartIcon from 'Components/cart-icon/cart-icon.components';
+import CartDropDown from 'Components/cart-dropdown/cart-dropdown.component';
+
 import Logo from '../../assets/crown.png';
-import Avatar from '../avatar/Avatar.component';
-import CartIcon from '../cart-icon/cart-icon.components';
-import CartDropDown from '../cart-dropdown/cart-dropdown.component';
 import './header.styles.scss';
 
 const Header: React.FC = () => {
+	const [anchorElement, setAnchorElement] = useState<HTMLDivElement | null>(null);
 	const location = useLocation();
 	const dispatch = useDispatch();
+
 	const history = useHistory();
 	const isOpen = useSelector<RootState, boolean>(selectCartDropDownStatus);
 	const currentUser = useSelector<RootState, { result: User } | null>(selectCurrentUser);
@@ -23,6 +27,14 @@ const Header: React.FC = () => {
 		dispatch({ type: 'SET_CURRENT_USER', payload: null });
 		history.push('/');
 	};
+	const handlePopoverOpen = (event: React.MouseEvent<HTMLDivElement>) => {
+		setAnchorElement(event.currentTarget);
+	};
+	const handlePopoverClose = () => {
+		setAnchorElement(null);
+	};
+	const open = Boolean(anchorElement);
+
 	useEffect(() => {
 		const profileData = localStorage.getItem('profile');
 		if (profileData) {
@@ -46,11 +58,25 @@ const Header: React.FC = () => {
 				<CartIcon count={cartItemsCount} />
 				{currentUser ? (
 					<div className="profile">
-						<Avatar imgUrl={currentUser?.result.image ?? ''} name={currentUser?.result?.name} />
-
-						<button type="button" className="logout-btn" onClick={logout}>
-							Log out
-						</button>
+						<Box component="div" onClick={handlePopoverOpen}>
+							<Avatar imgUrl={currentUser?.result.image ?? ''} name={currentUser?.result?.name} />
+						</Box>
+						<Popover
+							anchorEl={anchorElement}
+							open={open}
+							onClose={handlePopoverClose}
+							anchorOrigin={{
+								vertical: 'bottom',
+								horizontal: 'right',
+							}}
+						>
+							{/* <button type="button" className="logout-btn" onClick={logout}>
+								Log out
+							</button> */}
+							<Button variant="contained" onClick={logout}>
+								Log out
+							</Button>
+						</Popover>
 					</div>
 				) : (
 					<div>
