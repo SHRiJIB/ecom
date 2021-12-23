@@ -2,12 +2,12 @@
 	"name": "server",
 	"version": "1.0.0",
 	"description": "server for my ecommerce website",
-	"main": "index.js",
+	"main": "index.ts",
 	"author": "Shreejeeb Kesh",
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
-		"start": "nodemon index.js"
+		"start": "nodemon index.ts"
 	},
 	"dependencies": {
 		"bcryptjs": "^2.4.3",
