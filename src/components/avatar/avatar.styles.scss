@@ -1,11 +1,17 @@
 .avatar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(144, 208, 238, 0.5);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  color: rgb(19, 17, 17);
-  font-weight: 800;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(144, 208, 238, 0.5);
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	color: rgb(19, 17, 17);
+	font-weight: 800;
+	cursor: pointer;
+
+	&:hover {
+		background-color: rgba(55, 180, 238, 0.5);
+		outline: black solid 1px;
+	}
 }
