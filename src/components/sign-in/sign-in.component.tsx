@@ -2,21 +2,18 @@ import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { signin } from 'Stores/auth/auth';
-import { FormData } from 'Components/signup/signup.component';
 import CustomButton from 'Components/custom-button/custom-button.component';
 import FormInput from 'Components/form-input/form-input.component';
 import './sign-in.styles.scss';
 
 const Signin: FC = () => {
 	const initialFormData = {
-		firstName: '',
-		lastName: '',
 		email: '',
 		password: '',
 	};
 	const dispatch = useDispatch();
 
-	const [formData, setFormData] = useState<FormData>(initialFormData);
+	const [formData, setFormData] = useState<{ email: string; password: string }>(initialFormData);
 
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -38,7 +35,7 @@ const Signin: FC = () => {
 					<FormInput
 						id="email"
 						type="email"
-						value={formData.email}
+						value={formData.email ?? ''}
 						handleChange={handleChange}
 						label="Email"
 						name="email"
@@ -47,7 +44,7 @@ const Signin: FC = () => {
 					<FormInput
 						id="password"
 						type="password"
-						value={formData.password}
+						value={formData.password ?? ''}
 						handleChange={handleChange}
 						label="Password"
 						name="password"

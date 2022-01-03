@@ -7,7 +7,7 @@ import userRouter from './routes/user';
 
 const app = express();
 config();
-app.use(json({ limit: 30 }));
+app.use(json({ limit: '30mb' }));
 app.use(urlencoded({ extended: true }));
 app.use(cors());
 

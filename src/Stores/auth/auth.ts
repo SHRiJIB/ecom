@@ -4,7 +4,7 @@ import { Dispatch } from 'redux';
 import * as api from '../../api/index';
 
 export const signin =
-	(formData: FormData) =>
+	(formData: { email: string; password: string }) =>
 	async (dispatch: Dispatch): Promise<void> => {
 		try {
 			const { data } = await api.signin(formData);
