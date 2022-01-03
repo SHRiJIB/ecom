@@ -114,6 +114,7 @@ const createProductReview = asyncHandler(async (req, res) => {
 
 	if (product) {
 		const alreadyReviewed = product.reviews.find(
+			// eslint-disable-next-line no-underscore-dangle
 			(r) => r.user.toString() === req.user._id.toString()
 		);
 

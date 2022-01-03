@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import './checkout.styles.scss';
 import { selectCartItems, selectCartTotal } from 'Stores/cart/cart.selector';
 import { useSelector } from 'react-redux';
+import CheckoutItem from 'Components/checkout-item/CheckoutItem';
 
 const Checkout: FC = () => {
 	const cartItems = useSelector(selectCartItems);
@@ -25,7 +26,9 @@ const Checkout: FC = () => {
 					<span>Remove</span>
 				</div>
 			</div>
-			{Object.keys(cartItems).map((key) => cartItems[key].name)}
+			{Object.keys(cartItems).map((key) => (
+				<CheckoutItem key={key} item={cartItems[key]} />
+			))}
 
 			<div className="total">TOTAL: ${totalPrice}</div>
 		</div>
