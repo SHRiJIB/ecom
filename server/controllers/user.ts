@@ -5,7 +5,7 @@ import { Request, Response } from 'express';
 
 import jwt from 'jsonwebtoken';
 
-import User from '../models/user.js';
+import User from '../models/user';
 
 export const signin = async (
 	req: Request,

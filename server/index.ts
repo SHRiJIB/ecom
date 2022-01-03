@@ -3,7 +3,7 @@ import express, { json, urlencoded } from 'express';
 import { config } from 'dotenv';
 import { connect, set } from 'mongoose';
 import cors from 'cors';
-import userRouter from './routes/user.js';
+import userRouter from './routes/user';
 
 const app = express();
 config();
