@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { RouteComponentProps } from 'react-router';
 import { FormData } from 'Components/signup/signup.component';
 import { Dispatch } from 'redux';
