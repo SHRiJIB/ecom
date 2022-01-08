@@ -2,7 +2,7 @@
 import { RouteComponentProps } from 'react-router';
 import { FormData } from 'Components/signup/signup.component';
 import { Dispatch } from 'redux';
-import * as api from '../../api/index';
+import * as api from '../../Api/index';
 
 export const signin =
 	(formData: { email: string; password: string }) =>
