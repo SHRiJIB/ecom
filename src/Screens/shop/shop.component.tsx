@@ -1,11 +1,13 @@
 import React, { FC } from 'react';
+import { useSelector } from 'react-redux';
+import { selectShopCollections } from 'Stores/shop/shop.selector';
 import CollectionPreview from '../../Components/collection-preview/collection-preview.component';
-import { SHOP_DATA } from './shop1.data';
 
 const Shop: FC = () => {
+	const collections = useSelector(selectShopCollections);
 	return (
 		<div className="shop-page">
-			{SHOP_DATA.map(({ id, title, items }) => (
+			{collections.map(({ id, title, items }) => (
 				<CollectionPreview key={id} title={title} items={items} />
 			))}
 		</div>

@@ -8,6 +8,7 @@ import { CartState } from './cart/cart.reducer';
 import rootReducer from './root-reducer';
 import { UserState } from './user/user.reducer';
 import { DirectoryState } from './directory/directory.reducer';
+import { ShopState } from './shop/shop.reducer';
 
 // const middleWares = [logger, thunk];
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk, logger)));
@@ -18,6 +19,7 @@ export interface RootState {
 	auth: AuthState;
 	cart: CartState;
 	directory: DirectoryState;
+	shop: ShopState;
 }
 export type AppDispatch = typeof store.dispatch;
 export default store;
