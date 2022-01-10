@@ -18,7 +18,7 @@ function App(): JSX.Element {
 			<Header />
 			<Switch>
 				<Route exact path="/" component={HomePage} />
-				<Route exact path="/shop" component={Shop} />
+				<Route path="/shop" component={Shop} />
 				<Route exact path="/checkout" component={CheckoutPage} />
 				<Route exact path="/signin" render={() => (user ? <Redirect to="/" /> : <Signin />)} />
 				<Route exact path="/signup" render={() => (user ? <Redirect to="/" /> : <Signup />)} />

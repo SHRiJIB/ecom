@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import './cart-icon.styles.scss';
 import { useDispatch } from 'react-redux';
 import { toggleCart } from 'Stores/cart/cart.actions';
-import { ReactComponent as Icon } from 'assets/shopping-bag.svg';
+import { ReactComponent as Icon } from 'Assets/shopping-bag.svg';
 
 interface CartIconProps {
 	count?: number;

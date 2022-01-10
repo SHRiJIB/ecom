@@ -10,7 +10,7 @@ import Avatar from 'Components/avatar/Avatar.component';
 import CartIcon from 'Components/cart-icon/cart-icon.components';
 import CartDropDown from 'Components/cart-dropdown/cart-dropdown.component';
 
-import Logo from '../../assets/crown.png';
+import Logo from 'Assets/crown.png';
 import './header.styles.scss';
 
 const Header: React.FC = () => {
