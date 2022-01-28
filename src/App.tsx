@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router';
-import { RootState } from 'Stores';
 import './App.css';
 import Header from 'Components/header/header.component';
 import Signin from 'Components/sign-in/sign-in.component';
@@ -9,9 +8,10 @@ import Signup from 'Components/signup/signup.component';
 import HomePage from 'Screens/homepage/homepage.component';
 import Shop from 'Screens/shop/shop.component';
 import CheckoutPage from 'Screens/checkout/checkout';
+import { selectCurrentUser } from 'Stores/user/user.selector';
 
 function App(): JSX.Element {
-	const user = useSelector<RootState>((state) => state.user.currentUser);
+	const user = useSelector(selectCurrentUser);
 
 	return (
 		<div>

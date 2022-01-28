@@ -2,9 +2,9 @@ import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { signup } from 'Stores/auth/auth';
-import CustomButton from 'Components/custom-button/custom-button.component';
 import FormInput from 'Components/form-input/form-input.component';
 import './signup.styles.scss';
+import CustomMuiButton from 'Components/custom-mui-button';
 
 interface SignUpFormProps {}
 export interface FormData {
@@ -79,7 +79,15 @@ const Signup: FC<SignUpFormProps> = () => {
 						required
 					/>
 
-					<CustomButton type="submit">Sign up</CustomButton>
+					<CustomMuiButton
+						type="submit"
+						variant="contained"
+						size="large"
+						disableElevation
+						disableRipple
+					>
+						Sign up
+					</CustomMuiButton>
 				</form>
 				<Link to="/signin">Already have an account?</Link>
 			</div>
