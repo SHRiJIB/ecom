@@ -13,7 +13,7 @@ const Shop: FC = () => {
 		<div className="shop-page">
 			shop
 			<Route exact path={path} component={() => <CollectionOverview collections={collections} />} />
-			<Route path={`${path}/:category`} component={CollectionPage} />
+			<Route path={`${path}/:collection`} component={CollectionPage} />
 		</div>
 	);
 };
