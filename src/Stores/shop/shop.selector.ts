@@ -1,5 +1,7 @@
 import { createSelector } from 'reselect';
 import { RootState } from 'Stores';
+import memoize from 'lodash.memoize';
+import { ShopCollectionInterface } from './shop1.data';
 
 enum COLLECTION_ID_MAP {
 	hats = 1,
@@ -14,7 +16,8 @@ const selectShop = (state: RootState) => state.shop;
 
 export const selectShopCollections = createSelector([selectShop], (shop) => shop.collections);
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const selectCollection = (collectionUrlParam: Collection) =>
-	createSelector([selectShopCollections], (collections) =>
-		collections.find((collection) => collection.id === COLLECTION_ID_MAP[collectionUrlParam])
-	);
+export const selectCollection = memoize((collectionUrlParam: Collection) =>
+	createSelector([selectShopCollections], (collections): ShopCollectionInterface => {
+		return collections.find((collection) => collection.id === COLLECTION_ID_MAP[collectionUrlParam]) as ShopCollectionInterface;
+	})
+);
