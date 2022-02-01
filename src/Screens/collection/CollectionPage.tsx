@@ -4,12 +4,12 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { Collection, selectCollection } from 'Stores/shop/shop.selector';
-import { ShopCollectionInterface } from 'Stores/shop/shop1.data';
+import { IShopCollection } from 'Stores/shop/shop1.data';
 import './collection.styles.scss';
 
 const CollectionPage: React.FC = () => {
 	const params: { collection: Collection } = useParams();
-	const collection: ShopCollectionInterface | undefined = useSelector(selectCollection(params.collection));
+	const collection: IShopCollection = useSelector(selectCollection(params.collection));
 	console.log(collection);
 	const { title, items } = collection;
 
