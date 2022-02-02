@@ -15,6 +15,9 @@ export type Collection = keyof typeof COLLECTION_ID_MAP;
 const selectShop = (state: RootState) => state.shop;
 
 export const selectShopCollections = createSelector([selectShop], (shop) => shop.collections);
+export const selectShopCollectionsForPreview = createSelector([selectShopCollections], (collections) =>
+	Object.keys(collections).map((key) => collections[key as Collection])
+);
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const selectCollection = memoize((collectionUrlParam: Collection) =>
 	createSelector([selectShopCollections], (collections): IShopCollection => {
