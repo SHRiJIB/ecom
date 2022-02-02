@@ -1,5 +1,4 @@
 import CollectionItem from 'Components/collection-item/collection-item.compoent';
-import CustomMuiButton from 'Components/custom-mui-button';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
@@ -10,7 +9,6 @@ import './collection.styles.scss';
 const CollectionPage: React.FC = () => {
 	const params: { collection: Collection } = useParams();
 	const collection: IShopCollection = useSelector(selectCollection(params.collection));
-	console.log(collection);
 	const { title, items } = collection;
 
 	return (
@@ -21,9 +19,6 @@ const CollectionPage: React.FC = () => {
 					<CollectionItem key={item.id} {...item} addToCart={() => {}} />
 				))}
 			</div>
-			<CustomMuiButton variant="contained" size="large" disableRipple disableElevation>
-				CATEGORY PAGE
-			</CustomMuiButton>
 		</div>
 	);
 };

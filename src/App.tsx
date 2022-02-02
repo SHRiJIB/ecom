@@ -5,7 +5,7 @@ import './App.css';
 import Header from 'Components/header/header.component';
 import Signin from 'Components/sign-in/sign-in.component';
 import Signup from 'Components/signup/signup.component';
-import HomePage from 'Screens/homepage/homepage.component';
+import HomePage from 'Screens/home/homepage.component';
 import Shop from 'Screens/shop/shop.component';
 import CheckoutPage from 'Screens/checkout/checkout';
 import { selectCurrentUser } from 'Stores/user/user.selector';
