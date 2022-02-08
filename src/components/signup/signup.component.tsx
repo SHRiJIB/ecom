@@ -42,50 +42,12 @@ const Signup: FC<SignUpFormProps> = () => {
 			<div className="sign-up">
 				<h1 className="title">Sign up</h1>
 				<form onSubmit={handleSubmit}>
-					<FormInput
-						id="firstName"
-						type="text"
-						value={formData.firstName}
-						handleChange={handleChange}
-						label="First Name"
-						name="firstName"
-						required
-					/>
-					<FormInput
-						id="lastName"
-						type="text"
-						value={formData.lastName}
-						handleChange={handleChange}
-						label="Last Name"
-						name="lastName"
-						required
-					/>
-					<FormInput
-						id="email"
-						type="email"
-						value={formData.email}
-						handleChange={handleChange}
-						label="Email"
-						name="email"
-						required
-					/>
-					<FormInput
-						id="password"
-						type="password"
-						value={formData.password}
-						handleChange={handleChange}
-						label="Password"
-						name="password"
-						required
-					/>
+					<FormInput id="firstName" type="text" value={formData.firstName} handleChange={handleChange} label="First Name" name="firstName" required />
+					<FormInput id="lastName" type="text" value={formData.lastName} handleChange={handleChange} label="Last Name" name="lastName" required />
+					<FormInput id="email" type="email" value={formData.email} handleChange={handleChange} label="Email" name="email" required />
+					<FormInput id="password" type="password" value={formData.password} handleChange={handleChange} label="Password" name="password" required />
 
-					<CustomMuiButton
-						type="submit"
-						variant="contained"
-						size="large"
-						disableElevation
-						disableRipple
-					>
+					<CustomMuiButton type="submit" variant="contained" size="large" disableElevation disableRipple>
 						Sign up
 					</CustomMuiButton>
 				</form>

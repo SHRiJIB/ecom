@@ -32,15 +32,7 @@ const Signin: FC = () => {
 			<div className="sign-in">
 				<h1 className="title">Sign in</h1>
 				<form onSubmit={handleSubmit}>
-					<FormInput
-						id="email"
-						type="email"
-						value={formData.email ?? ''}
-						handleChange={handleChange}
-						label="Email"
-						name="email"
-						required
-					/>
+					<FormInput id="email" type="email" value={formData.email ?? ''} handleChange={handleChange} label="Email" name="email" required />
 					<FormInput
 						id="password"
 						type="password"
