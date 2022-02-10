@@ -5,7 +5,7 @@
 	"main": "index.ts",
 	"author": "Shreejeeb Kesh",
 	"license": "MIT",
-	"type": "module",
+	
 	"scripts": {
 		"start": "nodemon index.ts",
 		"dev": "ts-node-dev --respawn --pretty --transpile-only index.ts"
