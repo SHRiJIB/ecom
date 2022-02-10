@@ -20,7 +20,7 @@ const Header: React.FC = () => {
 
 	const history = useHistory();
 	const isOpen = useSelector<RootState, boolean>(selectCartDropDownStatus);
-	const currentUser = useSelector<RootState, { result: User } | null>(selectCurrentUser);
+	const currentUser = useSelector<RootState, User | null>(selectCurrentUser);
 	const cartItemsCount = useSelector<RootState, number>(selectCartItemsCount);
 	const logout = () => {
 		dispatch({ type: 'LOGOUT' });
@@ -59,7 +59,7 @@ const Header: React.FC = () => {
 				{currentUser ? (
 					<div className="profile">
 						<Box component="div" onClick={handlePopoverOpen}>
-							<Avatar imgUrl={currentUser?.result.image ?? ''} name={currentUser?.result?.name} />
+							<Avatar imgUrl={currentUser?.image ?? ''} name={currentUser?.name} />
 						</Box>
 						<Popover
 							anchorEl={anchorElement}
