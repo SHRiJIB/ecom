@@ -11,7 +11,11 @@ const Shop: FC = () => {
 	// console.log(location.pathname);
 	return (
 		<div className="shop-page">
-			<Route exact path={path} component={() => <CollectionsOverview collections={collections} />} />
+			<Route
+				exact
+				path={path}
+				component={() => <CollectionsOverview collections={collections} />}
+			/>
 			<Route path={`${path}/:collection`} component={CollectionPage} />
 		</div>
 	);
