@@ -9,26 +9,28 @@ const Checkout: FC = () => {
 	const totalPrice = useSelector(selectCartTotal);
 	return (
 		<div className="checkout-page">
-			<div className="checkout-header">
-				<div className="header-blocks">
-					<span>Product</span>
+			<div className="checkout-container">
+				<div className="checkout-header">
+					<div className="header-blocks">
+						<span>Product</span>
+					</div>
+					<div className="header-blocks">
+						<span>Description</span>
+					</div>
+					<div className="header-blocks">
+						<span>Quantitiy</span>
+					</div>
+					<div className="header-blocks">
+						<span>Price</span>
+					</div>
+					<div className="header-blocks">
+						<span>Remove</span>
+					</div>
 				</div>
-				<div className="header-blocks">
-					<span>Description</span>
-				</div>
-				<div className="header-blocks">
-					<span>Quantitiy</span>
-				</div>
-				<div className="header-blocks">
-					<span>Price</span>
-				</div>
-				<div className="header-blocks">
-					<span>Remove</span>
-				</div>
+				{cartItems.map((cartItem) => (
+					<CheckoutItem key={cartItem.id} item={cartItem} />
+				))}
 			</div>
-			{cartItems.map((cartItem) => (
-				<CheckoutItem key={cartItem.id} item={cartItem} />
-			))}
 
 			<div className="total">TOTAL: ${totalPrice}</div>
 		</div>
