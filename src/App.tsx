@@ -12,7 +12,6 @@ import { selectCurrentUser } from 'Stores/user/user.selector';
 
 function App(): JSX.Element {
 	const user = useSelector(selectCurrentUser);
-	console.log(process.env.REACT_APP_API_BASE_URL);
 	return (
 		<div>
 			<Header />

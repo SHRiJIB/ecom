@@ -2,7 +2,7 @@ import { model, Schema } from 'mongoose';
 
 export interface Review {
 	name: string;
-	rating: string;
+	rating: number;
 	comment: string;
 	user: Schema.Types.ObjectId;
 }

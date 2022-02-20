@@ -1,18 +1,19 @@
 import asyncHandler from 'express-async-handler';
+import { Schema } from 'mongoose';
 import { IRequest } from '../middlewares/auth';
-import Product from '../models/product';
+import Product, { Review } from '../models/product';
 
 // @desc    Fetch all products
 // @route   GET /api/products
 // @access  Public
-const getProducts = asyncHandler(async (req, res) => {
+const getProducts = asyncHandler(async (req: IRequest, res) => {
 	const pageSize = 10;
 	const page = Number(req.query.pageNumber) || 1;
 
 	const keyword = req.query.keyword
 		? {
 				name: {
-					$regex: req.query.keyword,
+					$regex: req.query.keyword as unknown as RegExp,
 					$options: 'i',
 				},
 		  }
@@ -107,7 +108,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 // @desc    Create new review
 // @route   POST /api/products/:id/reviews
 // @access  Private
-const createProductReview = asyncHandler(async (req, res) => {
+const createProductReview = asyncHandler(async (req: IRequest, res) => {
 	const { rating, comment } = req.body;
 
 	const product = await Product.findById(req.params.id);
@@ -115,7 +116,7 @@ const createProductReview = asyncHandler(async (req, res) => {
 	if (product) {
 		const alreadyReviewed = product.reviews.find(
 			// eslint-disable-next-line no-underscore-dangle
-			(r) => r.user.toString() === req.user._id.toString()
+			(r) => r.user.toString() === req.user?._id.toString()
 		);
 
 		if (alreadyReviewed) {
@@ -123,11 +124,12 @@ const createProductReview = asyncHandler(async (req, res) => {
 			throw new Error('Product already Reviewed!');
 		}
 
-		const review = {
-			name: req.user.name,
+		const review: Review = {
+			name: req.user?.name || '',
 			rating: Number(rating),
 			comment,
-			user: req.user._id,
+			// eslint-disable-next-line no-underscore-dangle
+			user: req.user?._id as Schema.Types.ObjectId,
 		};
 
 		product.reviews.push(review);

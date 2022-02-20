@@ -2,6 +2,7 @@ import { Schema as _Schema, model } from 'mongoose';
 
 const Schema = _Schema;
 export interface UserInterface {
+	_id: _Schema.Types.ObjectId;
 	name: string;
 	email: string;
 	password?: string;
