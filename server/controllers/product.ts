@@ -3,9 +3,11 @@ import { Schema } from 'mongoose';
 import { IRequest } from '../middlewares/auth';
 import Product, { Review } from '../models/product';
 
-// @desc    Fetch all products
-// @route   GET /api/products
-// @access  Public
+/**
+ @desc    Fetch all products
+ @route   GET /api/products
+ @access  Public
+ */
 const getProducts = asyncHandler(async (req: IRequest, res) => {
 	const pageSize = 10;
 	const page = Number(req.query.pageNumber) || 1;

@@ -1,8 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 
 import './custom-button.styles.scss';
 
 interface CustomButtonProps {
+	children: ReactNode;
 	type: 'button' | 'submit' | 'reset' | undefined;
 	inverted?: boolean;
 	onClick?: () => void;

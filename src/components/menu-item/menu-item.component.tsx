@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { FC } from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import './menu-item.styles.scss';
 
 interface MenuItemProps {
@@ -10,10 +10,10 @@ interface MenuItemProps {
 	linkUrl: string;
 }
 const MenuItem: FC<MenuItemProps> = ({ title, imageUrl, size, linkUrl }) => {
-	const history = useHistory();
+	const navigate = useNavigate();
 	return (
 		// eslint-disable-next-line jsx-a11y/no-static-element-interactions
-		<div className={`menu-item ${size}`} onClick={() => history.push(`${linkUrl}`)}>
+		<div className={`menu-item ${size}`} onClick={() => navigate(`${linkUrl}`)}>
 			<div
 				className="background-image"
 				style={{

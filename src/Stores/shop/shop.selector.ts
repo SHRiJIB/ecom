@@ -19,7 +19,6 @@ export const selectShopCollectionsForPreview = createSelector(
 	[selectShopCollections],
 	(collections) => Object.keys(collections).map((key) => collections[key as Collection])
 );
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const selectCollection = memoize((collectionUrlParam: Collection) =>
 	createSelector([selectShopCollections], (collections): IShopCollection => {
 		return collections[collectionUrlParam];

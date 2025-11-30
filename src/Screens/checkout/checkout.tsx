@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 import './checkout.styles.scss';
 import { selectCartItems, selectCartTotal } from 'Stores/cart/cart.selector';
-import { useSelector } from 'react-redux';
 import CheckoutItem from 'Components/checkout-item/CheckoutItem';
 import CheckoutForm from 'Components/StripeCheckOutForm/CheckOutForm';
+import { useAppSelector } from 'Stores/hook';
 
 const Checkout: FC = () => {
-	const cartItems = useSelector(selectCartItems);
-	const totalPrice = useSelector(selectCartTotal);
+	const cartItems = useAppSelector(selectCartItems);
+	const totalPrice = useAppSelector(selectCartTotal);
 	return (
 		<div className="checkout-page">
 			<div className="checkout-container">

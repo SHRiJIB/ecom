@@ -1,25 +1,19 @@
-import { createStore, applyMiddleware, Store, AnyAction } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import logger from 'redux-logger';
-import thunk from 'redux-thunk';
-import { persistStore } from 'redux-persist';
-import { AuthState } from './auth/Auth.reducer';
-import { CartState } from './cart/cart.reducer';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from './root-reducer';
-import { UserStoreState } from './user/user.reducer';
-import { DirectoryState } from './directory/directory.reducer';
-import { ShopState } from './shop/shop.reducer';
 
 // const middleWares = [logger, thunk];
-export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk, logger)));
+
+export const store = configureStore({ reducer: rootReducer });
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const persistor = persistStore(store as unknown as Store<any, AnyAction>);
-export interface RootState {
-	user: UserStoreState;
-	auth: AuthState;
-	cart: CartState;
-	directory: DirectoryState;
-	shop: ShopState;
-}
+// export const persistor = persistStore(store as unknown as Store<any, AnyAction>);
+// export interface RootState {
+// 	user: UserStoreState;
+// 	auth: AuthState;
+// 	cart: CartState;
+// 	directory: DirectoryState;
+// 	shop: ShopState;
+// }
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export default store;

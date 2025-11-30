@@ -1,22 +1,18 @@
 import React, { FC } from 'react';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from 'Stores/hook';
 import { selectShopCollectionsForPreview } from 'Stores/shop/shop.selector';
 import CollectionsOverview from 'Components/collections-overview/CollectionOverview';
-import { Route, useRouteMatch } from 'react-router';
+import { Route, Routes } from 'react-router-dom';
 import CollectionPage from 'Screens/collection/CollectionPage';
 
 const Shop: FC = () => {
-	const collections = useSelector(selectShopCollectionsForPreview);
-	const { path } = useRouteMatch();
-	// console.log(location.pathname);
+	const collections = useAppSelector(selectShopCollectionsForPreview);
 	return (
 		<div className="shop-page">
-			<Route
-				exact
-				path={path}
-				component={() => <CollectionsOverview collections={collections} />}
-			/>
-			<Route path={`${path}/:collection`} component={CollectionPage} />
+			<Routes>
+				<Route index element={<CollectionsOverview collections={collections} />} />
+				<Route path=":collection" element={<CollectionPage />} />
+			</Routes>
 		</div>
 	);
 };

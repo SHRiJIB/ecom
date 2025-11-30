@@ -1,10 +1,10 @@
 import React, { FC, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { signup } from 'Stores/auth/auth';
 import FormInput from 'Components/form-input/form-input.component';
 import './signup.styles.scss';
 import CustomMuiButton from 'Components/custom-mui-button';
+import { useAppDispatch } from 'Stores/hook';
 
 interface SignUpFormProps {}
 export interface FormData {
@@ -21,14 +21,14 @@ const Signup: FC<SignUpFormProps> = () => {
 		password: '',
 	};
 
-	const history = useHistory();
-	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const dispatch = useAppDispatch();
 
 	const [formData, setFormData] = useState<FormData>(initialFormData);
 
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		dispatch(signup(formData, history));
+		dispatch(signup(formData, navigate));
 		setFormData({ ...initialFormData });
 	};
 

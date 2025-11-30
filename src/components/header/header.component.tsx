@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation, useHistory } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { RootState } from 'Stores';
 import { Popover, Box, Button } from '@mui/material';
 import { User } from 'Stores/user/user.reducer';
@@ -12,20 +11,21 @@ import CartDropDown from 'Components/cart-dropdown/cart-dropdown.component';
 
 import Logo from 'Assets/crown.png';
 import './header.styles.scss';
+import { useAppDispatch, useAppSelector } from 'Stores/hook';
 
 const Header: React.FC = () => {
 	const [anchorElement, setAnchorElement] = useState<HTMLDivElement | null>(null);
 	const location = useLocation();
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
-	const history = useHistory();
-	const isOpen = useSelector<RootState, boolean>(selectCartDropDownStatus);
-	const currentUser = useSelector<RootState, User | null>(selectCurrentUser);
-	const cartItemsCount = useSelector<RootState, number>(selectCartItemsCount);
+	const navigate = useNavigate();
+	const isOpen = useAppSelector<RootState, boolean>(selectCartDropDownStatus);
+	const currentUser = useAppSelector<RootState, User | null>(selectCurrentUser);
+	const cartItemsCount = useAppSelector<RootState, number>(selectCartItemsCount);
 	const logout = () => {
 		dispatch({ type: 'LOGOUT' });
 		dispatch({ type: 'SET_CURRENT_USER', payload: null });
-		history.push('/');
+		navigate('/');
 	};
 	const handlePopoverOpen = (event: React.MouseEvent<HTMLDivElement>) => {
 		setAnchorElement(event.currentTarget);

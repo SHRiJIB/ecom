@@ -3,5 +3,7 @@
 	"useTabs": true,
 	"bracketSpacing": true,
 	"jsxBracketSameLine": false,
-	"printWidth": 100
+	"printWidth": 100,
+	"arrowParens": "always",
+	"endOfLine": "crlf"
 }

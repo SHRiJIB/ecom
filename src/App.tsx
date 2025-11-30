@@ -1,6 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Redirect, Route, Switch } from 'react-router';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from 'Components/header/header.component';
 import Signin from 'Components/sign-in/sign-in.component';
@@ -9,19 +8,20 @@ import HomePage from 'Screens/home/homepage.component';
 import Shop from 'Screens/shop/shop.component';
 import CheckoutPage from 'Screens/checkout/checkout';
 import { selectCurrentUser } from 'Stores/user/user.selector';
+import { useAppSelector } from 'Stores/hook';
 
-function App(): JSX.Element {
-	const user = useSelector(selectCurrentUser);
+function App(): React.JSX.Element {
+	const user = useAppSelector(selectCurrentUser);
 	return (
 		<div>
 			<Header />
-			<Switch>
-				<Route exact path="/" component={HomePage} />
-				<Route path="/shop" component={Shop} />
-				<Route exact path="/checkout" component={CheckoutPage} />
-				<Route exact path="/signin" render={() => (user ? <Redirect to="/" /> : <Signin />)} />
-				<Route exact path="/signup" render={() => (user ? <Redirect to="/" /> : <Signup />)} />
-			</Switch>
+			<Routes>
+				<Route path="/" element={<HomePage />} />
+				<Route path="/shop/*" element={<Shop />} />
+				<Route path="/checkout" element={<CheckoutPage />} />
+				<Route path="/signin" element={user ? <Navigate to="/" /> : <Signin />} />
+				<Route path="/signup" element={user ? <Navigate to="/" /> : <Signup />} />
+			</Routes>
 		</div>
 	);
 }

@@ -1,17 +1,17 @@
 import React, { FC, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { signin } from 'Stores/auth/auth';
 import CustomButton from 'Components/custom-button/custom-button.component';
 import FormInput from 'Components/form-input/form-input.component';
 import './sign-in.styles.scss';
+import { useAppDispatch } from 'Stores/hook';
 
 const Signin: FC = () => {
 	const initialFormData = {
 		email: '',
 		password: '',
 	};
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	const [formData, setFormData] = useState<{ email: string; password: string }>(initialFormData);
 

@@ -1,19 +1,19 @@
 import CartItemComp from 'Components/cart-item/cartItem';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { RootState } from 'Stores';
 import { ICartItem } from 'Stores/cart/cart.reducer';
 import { toggleCart } from 'Stores/cart/cart.actions';
 import { selectCartItems } from 'Stores/cart/cart.selector';
 import CustomButton from 'Components/custom-button/custom-button.component';
 import './cart-dropdown.styles.scss';
+import { useAppDispatch, useAppSelector } from 'Stores/hook';
 
 interface CartDropDownProps {}
 const CartDropDown: React.FC<CartDropDownProps> = () => {
-	const cartItems = useSelector<RootState, ICartItem[]>(selectCartItems);
-	const dispatch = useDispatch();
-	const history = useHistory();
+	const cartItems = useAppSelector<RootState, ICartItem[]>(selectCartItems);
+	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 	return (
 		<div className="cart-dropdown">
 			<div className="cart-items">
@@ -27,7 +27,7 @@ const CartDropDown: React.FC<CartDropDownProps> = () => {
 			<CustomButton
 				type="button"
 				onClick={() => {
-					history.push('/checkout');
+					navigate('/checkout');
 					dispatch(toggleCart());
 				}}
 			>
